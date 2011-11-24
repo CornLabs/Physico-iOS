@@ -91,8 +91,8 @@
 		D2CEE04E147ACD4C005249F4 = {
 			isa = PBXGroup;
 			children = (
-				D2D2C0AB147E8AD800375084 /* New Group */,
-				D2CEE063147ACD4C005249F4 /* Physico */,
+				D2D2C0AB147E8AD800375084 /* Physico Web Engine */,
+				D2CEE063147ACD4C005249F4 /* Physico iOS Bridge App */,
 				D2CEE087147ACD4D005249F4 /* PhysicoTests */,
 				D2CEE05C147ACD4C005249F4 /* Frameworks */,
 				D2CEE05A147ACD4C005249F4 /* Products */,
@@ -119,7 +119,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D2CEE063147ACD4C005249F4 /* Physico */ = {
+		D2CEE063147ACD4C005249F4 /* Physico iOS Bridge App */ = {
 			isa = PBXGroup;
 			children = (
 				D2B6E7E8147BF99500AB5AFD /* CLWebView.h */,
@@ -134,6 +134,7 @@
 				D2CEE079147ACD4D005249F4 /* CLDetailViewController.m */,
 				D2CEE064147ACD4C005249F4 /* Supporting Files */,
 			);
+			name = "Physico iOS Bridge App";
 			path = Physico;
 			sourceTree = "<group>";
 		};
@@ -167,12 +168,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D2D2C0AB147E8AD800375084 /* New Group */ = {
+		D2D2C0AB147E8AD800375084 /* Physico Web Engine */ = {
 			isa = PBXGroup;
 			children = (
 				D2D2C0A9147E8ACF00375084 /* assets */,
 			);
-			name = "New Group";
+			name = "Physico Web Engine";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

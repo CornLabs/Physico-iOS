@@ -10,8 +10,8 @@
 
 @class CLDetailViewController;
 
-@interface CLMasterViewController : UITableViewController
+@interface CLMasterViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) CLDetailViewController *detailViewController;
-
+@property (nonatomic, retain) NSMutableArray* obj;
 @end

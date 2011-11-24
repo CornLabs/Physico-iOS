@@ -21,8 +21,8 @@
 @synthesize detailView = _detailView;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize masterPopoverController = _masterPopoverController;
+@synthesize webView;
 
-CLWebView* webView;
 bool tapped, tappedFirst;
 float dragDistance[2];
 #pragma mark - Managing the detail item
@@ -77,10 +77,9 @@ float dragDistance[2];
     webView.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
     
     NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-    NSString* htmlString = @"<html><head><script>var script=document.createElement('script');script.src='assets/js/engine.js';script.onload=function(){ Physico.runningNativeMode = true; Physico.guiScript='ios'; Physico.prefix = 'assets/'; Physico.init(); };document.head.appendChild(script)</script></head><body>No Fliosc</body></html>";
+    NSString* htmlString = @"<html><head><script> console.log = function(log)    { var iframe = document.createElement(\"IFRAME\"); iframe.setAttribute(\"src\", \"call:logThing:\"+log); document.documentElement.appendChild(iframe); iframe.parentNode.removeChild(iframe); iframe = null; }; var script=document.createElement('script'); script.src='assets/js/engine.js'; script.onload=function() { Physico.runningNativeMode = true; Physico.guiScript='ios'; Physico.prefix = 'assets/'; script = document.head.getElementsByTagName('script'); for(var i = 0; i < script.length; i++) document.head.removeChild(script[i]); Physico.init(); }; document.head.appendChild(script)</script></head><body>No Fliosc</body></html>";
     NSLog(@"Starting WebView");
     [webView loadHTMLString:htmlString baseURL:baseURL];
-    
     self.view = webView;
     
 }
@@ -127,7 +126,7 @@ float dragDistance[2];
 {
     UIAccelerometer *acc = [UIAccelerometer sharedAccelerometer];
     acc.delegate = self;
-    acc.updateInterval = 0.25;
+    acc.updateInterval = 0.01;
 }
 - (void) stopAccelerometerTracking
 {    
@@ -136,7 +135,7 @@ float dragDistance[2];
 }
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
-    double const ajustment = 0.6;
+    double const ajustment = 0.03;
     if (tapped == NO) return;
     if (tappedFirst)    {
         dragDistance[0] = acceleration.x;
