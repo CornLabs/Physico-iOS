@@ -76,9 +76,8 @@ float dragDistance[2];
     webView.autoresizesSubviews = YES;
     webView.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
     
-    NSError* error;
     NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-    NSString* htmlString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"] encoding:NSUTF8StringEncoding error:&error];
+    NSString* htmlString = @"<html><head><script>var script=document.createElement('script');script.src='assets/js/engine.js';script.onload=function(){ Physico.runningNativeMode = true; Physico.guiScript='ios'; Physico.prefix = 'assets/'; Physico.init(); };document.head.appendChild(script)</script></head><body>No Fliosc</body></html>";
     NSLog(@"Starting WebView");
     [webView loadHTMLString:htmlString baseURL:baseURL];
     
@@ -144,7 +143,6 @@ float dragDistance[2];
         dragDistance[1] = acceleration.y;
         tappedFirst = NO;
     }
-    NSLog(@"%f - %f", ((acceleration.y - dragDistance[0])), ((acceleration.y - dragDistance[1])));
     NSString* command = [[[NSString alloc] init] stringByAppendingFormat:@"(function(){ Physico.rotate[1] -= %f; Physico.rotate[0] += %f; })()", ((acceleration.x - dragDistance[0]) *ajustment), ((acceleration.y - dragDistance[1]) *ajustment)];
     [webView stringByEvaluatingJavaScriptFromString:command];
 }
