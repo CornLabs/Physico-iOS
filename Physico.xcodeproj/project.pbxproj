@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2305FBF147C17910020618E /* css in Resources */ = {isa = PBXBuildFile; fileRef = D2305FB8147C17900020618E /* css */; };
+		D2305FC0147C17910020618E /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = D2305FB9147C17910020618E /* fonts */; };
+		D2305FC1147C17910020618E /* help.en.html in Resources */ = {isa = PBXBuildFile; fileRef = D2305FBA147C17910020618E /* help.en.html */; };
+		D2305FC2147C17910020618E /* help.ro.html in Resources */ = {isa = PBXBuildFile; fileRef = D2305FBB147C17910020618E /* help.ro.html */; };
+		D2305FC3147C17910020618E /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = D2305FBC147C17910020618E /* index.html */; };
+		D2305FC4147C17910020618E /* js in Resources */ = {isa = PBXBuildFile; fileRef = D2305FBD147C17910020618E /* js */; };
+		D2305FC5147C17910020618E /* webgl in Resources */ = {isa = PBXBuildFile; fileRef = D2305FBE147C17910020618E /* webgl */; };
+		D2305FC8147C1AE10020618E /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = D2305FC7147C1AE10020618E /* test.html */; };
+		D2B6E7EA147BF99500AB5AFD /* CLWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B6E7E9147BF99500AB5AFD /* CLWebView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D2CEE05E147ACD4C005249F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CEE05D147ACD4C005249F4 /* UIKit.framework */; };
 		D2CEE060147ACD4C005249F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CEE05F147ACD4C005249F4 /* Foundation.framework */; };
 		D2CEE062147ACD4C005249F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CEE061147ACD4C005249F4 /* CoreGraphics.framework */; };
@@ -35,27 +44,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2305FB8147C17900020618E /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; name = css; path = Physico/Physico/css; sourceTree = "<group>"; };
+		D2305FB9147C17910020618E /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = Physico/Physico/fonts; sourceTree = "<group>"; };
+		D2305FBA147C17910020618E /* help.en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = help.en.html; path = Physico/Physico/help.en.html; sourceTree = "<group>"; };
+		D2305FBB147C17910020618E /* help.ro.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = help.ro.html; path = Physico/Physico/help.ro.html; sourceTree = "<group>"; };
+		D2305FBC147C17910020618E /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = Physico/Physico/index.html; sourceTree = "<group>"; };
+		D2305FBD147C17910020618E /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; name = js; path = Physico/Physico/js; sourceTree = "<group>"; };
+		D2305FBE147C17910020618E /* webgl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = webgl; path = Physico/Physico/webgl; sourceTree = "<group>"; };
+		D2305FC7147C1AE10020618E /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
+		D2B6E7E8147BF99500AB5AFD /* CLWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWebView.h; sourceTree = "<group>"; };
+		D2B6E7E9147BF99500AB5AFD /* CLWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWebView.m; sourceTree = "<group>"; };
 		D2CEE059147ACD4C005249F4 /* Physico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Physico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CEE05D147ACD4C005249F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D2CEE05F147ACD4C005249F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2CEE061147ACD4C005249F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D2CEE065147ACD4C005249F4 /* Physico-Info.plist */ = {isa = PBXFileReference; path = "Physico-Info.plist"; sourceTree = "<group>"; };
+		D2CEE065147ACD4C005249F4 /* Physico-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Physico-Info.plist"; sourceTree = "<group>"; };
 		D2CEE067147ACD4C005249F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D2CEE069147ACD4C005249F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D2CEE06B147ACD4C005249F4 /* Physico-Prefix.pch */ = {isa = PBXFileReference; path = "Physico-Prefix.pch"; sourceTree = "<group>"; };
-		D2CEE06C147ACD4C005249F4 /* CLAppDelegate.h */ = {isa = PBXFileReference; path = CLAppDelegate.h; sourceTree = "<group>"; };
+		D2CEE06B147ACD4C005249F4 /* Physico-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Physico-Prefix.pch"; sourceTree = "<group>"; };
+		D2CEE06C147ACD4C005249F4 /* CLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLAppDelegate.h; sourceTree = "<group>"; };
 		D2CEE06D147ACD4C005249F4 /* CLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLAppDelegate.m; sourceTree = "<group>"; };
 		D2CEE070147ACD4D005249F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		D2CEE073147ACD4D005249F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		D2CEE075147ACD4D005249F4 /* CLMasterViewController.h */ = {isa = PBXFileReference; path = CLMasterViewController.h; sourceTree = "<group>"; };
+		D2CEE075147ACD4D005249F4 /* CLMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMasterViewController.h; sourceTree = "<group>"; };
 		D2CEE076147ACD4D005249F4 /* CLMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLMasterViewController.m; sourceTree = "<group>"; };
-		D2CEE078147ACD4D005249F4 /* CLDetailViewController.h */ = {isa = PBXFileReference; path = CLDetailViewController.h; sourceTree = "<group>"; };
+		D2CEE078147ACD4D005249F4 /* CLDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLDetailViewController.h; sourceTree = "<group>"; };
 		D2CEE079147ACD4D005249F4 /* CLDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLDetailViewController.m; sourceTree = "<group>"; };
 		D2CEE080147ACD4D005249F4 /* PhysicoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhysicoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CEE081147ACD4D005249F4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		D2CEE089147ACD4D005249F4 /* PhysicoTests-Info.plist */ = {isa = PBXFileReference; path = "PhysicoTests-Info.plist"; sourceTree = "<group>"; };
+		D2CEE089147ACD4D005249F4 /* PhysicoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhysicoTests-Info.plist"; sourceTree = "<group>"; };
 		D2CEE08B147ACD4D005249F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2CEE08D147ACD4D005249F4 /* PhysicoTests.h */ = {isa = PBXFileReference; path = PhysicoTests.h; sourceTree = "<group>"; };
+		D2CEE08D147ACD4D005249F4 /* PhysicoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicoTests.h; sourceTree = "<group>"; };
 		D2CEE08E147ACD4D005249F4 /* PhysicoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhysicoTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,9 +102,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D2305FC6147C17970020618E /* Physico Engine */ = {
+			isa = PBXGroup;
+			children = (
+				D2305FB8147C17900020618E /* css */,
+				D2305FB9147C17910020618E /* fonts */,
+				D2305FBA147C17910020618E /* help.en.html */,
+				D2305FBB147C17910020618E /* help.ro.html */,
+				D2305FC7147C1AE10020618E /* test.html */,
+				D2305FBC147C17910020618E /* index.html */,
+				D2305FBD147C17910020618E /* js */,
+				D2305FBE147C17910020618E /* webgl */,
+			);
+			name = "Physico Engine";
+			sourceTree = "<group>";
+		};
 		D2CEE04E147ACD4C005249F4 = {
 			isa = PBXGroup;
 			children = (
+				D2305FC6147C17970020618E /* Physico Engine */,
 				D2CEE063147ACD4C005249F4 /* Physico */,
 				D2CEE087147ACD4D005249F4 /* PhysicoTests */,
 				D2CEE05C147ACD4C005249F4 /* Frameworks */,
@@ -116,6 +151,8 @@
 		D2CEE063147ACD4C005249F4 /* Physico */ = {
 			isa = PBXGroup;
 			children = (
+				D2B6E7E8147BF99500AB5AFD /* CLWebView.h */,
+				D2B6E7E9147BF99500AB5AFD /* CLWebView.m */,
 				D2CEE06C147ACD4C005249F4 /* CLAppDelegate.h */,
 				D2CEE06D147ACD4C005249F4 /* CLAppDelegate.m */,
 				D2CEE06F147ACD4D005249F4 /* MainStoryboard_iPhone.storyboard */,
@@ -233,6 +270,14 @@
 				D2CEE068147ACD4C005249F4 /* InfoPlist.strings in Resources */,
 				D2CEE071147ACD4D005249F4 /* MainStoryboard_iPhone.storyboard in Resources */,
 				D2CEE074147ACD4D005249F4 /* MainStoryboard_iPad.storyboard in Resources */,
+				D2305FBF147C17910020618E /* css in Resources */,
+				D2305FC0147C17910020618E /* fonts in Resources */,
+				D2305FC1147C17910020618E /* help.en.html in Resources */,
+				D2305FC2147C17910020618E /* help.ro.html in Resources */,
+				D2305FC3147C17910020618E /* index.html in Resources */,
+				D2305FC4147C17910020618E /* js in Resources */,
+				D2305FC5147C17910020618E /* webgl in Resources */,
+				D2305FC8147C1AE10020618E /* test.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +316,7 @@
 				D2CEE06E147ACD4C005249F4 /* CLAppDelegate.m in Sources */,
 				D2CEE077147ACD4D005249F4 /* CLMasterViewController.m in Sources */,
 				D2CEE07A147ACD4D005249F4 /* CLDetailViewController.m in Sources */,
+				D2B6E7EA147BF99500AB5AFD /* CLWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +496,7 @@
 				D2CEE094147ACD4D005249F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2CEE095147ACD4D005249F4 /* Build configuration list for PBXNativeTarget "PhysicoTests" */ = {
 			isa = XCConfigurationList;
@@ -458,6 +505,7 @@
 				D2CEE097147ACD4D005249F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

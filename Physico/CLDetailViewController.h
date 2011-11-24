@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CLDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface CLDetailViewController : UIViewController <UISplitViewControllerDelegate, UIAccelerometerDelegate>
 
 @property (strong, nonatomic) id detailItem;
+@property (weak, nonatomic) IBOutlet UIView *detailView;
 
+-(void) loadWebView;
+-(void) decideTap:(UITapGestureRecognizer *)rec ;
+-(void) startTouchEvent;
+-(void) endTouchEvent;
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @end
