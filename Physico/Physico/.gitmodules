@@ -1,3 +1,0 @@
-[submodule "js/libs/cl"]
-	path = js/libs/cl
-	url = git@bitbucket.org:sabinmarcu/cl-toolkit.git
