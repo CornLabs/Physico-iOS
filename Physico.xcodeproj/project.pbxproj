@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2A9E8281481985500B2DDC1 /* Physico Balls-72.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A9E8271481985500B2DDC1 /* Physico Balls-72.png */; };
+		D2A9E82A148199B000B2DDC1 /* Physico Balls Contrast-72.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A9E829148199B000B2DDC1 /* Physico Balls Contrast-72.png */; };
+		D2A9E82C14819A8900B2DDC1 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A9E82B14819A8900B2DDC1 /* Default-Landscape~ipad.png */; };
+		D2A9E82E14819A8B00B2DDC1 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A9E82D14819A8B00B2DDC1 /* Default-Portrait~ipad.png */; };
 		D2B6E7EA147BF99500AB5AFD /* CLWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B6E7E9147BF99500AB5AFD /* CLWebView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D2CEE05E147ACD4C005249F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CEE05D147ACD4C005249F4 /* UIKit.framework */; };
 		D2CEE060147ACD4C005249F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CEE05F147ACD4C005249F4 /* Foundation.framework */; };
@@ -37,6 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2A9E822148197D200B2DDC1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D2A9E825148197D400B2DDC1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		D2A9E8271481985500B2DDC1 /* Physico Balls-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Physico Balls-72.png"; sourceTree = "<group>"; };
+		D2A9E829148199B000B2DDC1 /* Physico Balls Contrast-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Physico Balls Contrast-72.png"; sourceTree = "<group>"; };
+		D2A9E82B14819A8900B2DDC1 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		D2A9E82D14819A8B00B2DDC1 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		D2B6E7E8147BF99500AB5AFD /* CLWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWebView.h; sourceTree = "<group>"; };
 		D2B6E7E9147BF99500AB5AFD /* CLWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWebView.m; sourceTree = "<group>"; };
 		D2CEE059147ACD4C005249F4 /* Physico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Physico.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +101,12 @@
 		D2CEE04E147ACD4C005249F4 = {
 			isa = PBXGroup;
 			children = (
+				D2A9E82D14819A8B00B2DDC1 /* Default-Portrait~ipad.png */,
+				D2A9E82B14819A8900B2DDC1 /* Default-Landscape~ipad.png */,
+				D2A9E829148199B000B2DDC1 /* Physico Balls Contrast-72.png */,
+				D2A9E8271481985500B2DDC1 /* Physico Balls-72.png */,
+				D2A9E825148197D400B2DDC1 /* Default@2x.png */,
+				D2A9E822148197D200B2DDC1 /* Default.png */,
 				D2D2C0AB147E8AD800375084 /* Physico Web Engine */,
 				D2CEE063147ACD4C005249F4 /* Physico iOS Bridge App */,
 				D2CEE087147ACD4D005249F4 /* PhysicoTests */,
@@ -251,6 +267,10 @@
 				D2CEE071147ACD4D005249F4 /* MainStoryboard_iPhone.storyboard in Resources */,
 				D2CEE074147ACD4D005249F4 /* MainStoryboard_iPad.storyboard in Resources */,
 				D2D2C0AA147E8ACF00375084 /* assets in Resources */,
+				D2A9E8281481985500B2DDC1 /* Physico Balls-72.png in Resources */,
+				D2A9E82A148199B000B2DDC1 /* Physico Balls Contrast-72.png in Resources */,
+				D2A9E82C14819A8900B2DDC1 /* Default-Landscape~ipad.png in Resources */,
+				D2A9E82E14819A8B00B2DDC1 /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

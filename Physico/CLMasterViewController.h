@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLWebView.h"
 
 @class CLDetailViewController;
 
@@ -14,4 +15,5 @@
 
 @property (strong, nonatomic) CLDetailViewController *detailViewController;
 @property (nonatomic, retain) NSMutableArray* obj;
+@property (nonatomic, retain) CLWebView* webView;
 @end

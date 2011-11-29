@@ -13,6 +13,7 @@
 @interface CLDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
+- (void)continueTransition;
 @end
 
 @implementation CLDetailViewController
@@ -25,6 +26,8 @@
 
 bool tapped, tappedFirst;
 float dragDistance[2];
+float accel[3];
+NSTimer* timer;
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -62,7 +65,7 @@ float dragDistance[2];
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self loadWebView];
+    if (!webView)    [self loadWebView];
     [self configureView];
 }
 
@@ -77,10 +80,11 @@ float dragDistance[2];
     webView.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
     
     NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-    NSString* htmlString = @"<html><head><script> console.log = function(log)    { var iframe = document.createElement(\"IFRAME\"); iframe.setAttribute(\"src\", \"call:logThing:\"+log); document.documentElement.appendChild(iframe); iframe.parentNode.removeChild(iframe); iframe = null; }; var script=document.createElement('script'); script.src='assets/js/engine.js'; script.onload=function() { Physico.runningNativeMode = true; Physico.guiScript='ios'; Physico.prefix = 'assets/'; script = document.head.getElementsByTagName('script'); for(var i = 0; i < script.length; i++) document.head.removeChild(script[i]); Physico.init(); }; document.head.appendChild(script)</script></head><body>No Fliosc</body></html>";
+    NSString* htmlString = @"<html><head><script> console.log = function(log)    { var iframe = document.createElement(\"IFRAME\"); iframe.setAttribute(\"src\", \"call:logThing:\"+log); document.documentElement.appendChild(iframe); iframe.parentNode.removeChild(iframe); iframe = null; }; var script=document.createElement('script'); script.src='assets/js/engine.js'; script.onload=function() { Physico.runningNativeMode = true; Physico.guiScript='ios'; Physico.prefix = 'assets/'; script = document.head.getElementsByTagName('script'); for(var i = 0; i < script.length; i++) document.head.removeChild(script[i]); Physico.init();  console.log(document.head.innerHTML) }; document.head.appendChild(script);</script></head><body>No Fliosc</body></html>";
     NSLog(@"Starting WebView");
+    
     [webView loadHTMLString:htmlString baseURL:baseURL];
-    self.view = webView;
+    [self.view addSubview:webView];
     
 }
 
@@ -127,6 +131,7 @@ float dragDistance[2];
     UIAccelerometer *acc = [UIAccelerometer sharedAccelerometer];
     acc.delegate = self;
     acc.updateInterval = 0.01;
+    accel[0] = accel[1] = accel[2] = 0;
 }
 - (void) stopAccelerometerTracking
 {    
@@ -135,14 +140,29 @@ float dragDistance[2];
 }
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
-    double const ajustment = 0.03;
+    double const accelajust = 0.005;
     if (tapped == NO) return;
     if (tappedFirst)    {
+        accel[0] = accel[1] = 0;
         dragDistance[0] = acceleration.x;
         dragDistance[1] = acceleration.y;
         tappedFirst = NO;
     }
-    NSString* command = [[[NSString alloc] init] stringByAppendingFormat:@"(function(){ Physico.rotate[1] -= %f; Physico.rotate[0] += %f; })()", ((acceleration.x - dragDistance[0]) *ajustment), ((acceleration.y - dragDistance[1]) *ajustment)];
+    accel[0] = (acceleration.x - dragDistance[0]) * accelajust + accel[0] * (1.0 - 0.15 );
+    accel[1] = (acceleration.y - dragDistance[1]) * accelajust  + accel[1] * (1.0 - 0.15 );
+    NSString* command = [[[NSString alloc] init] stringByAppendingFormat:@"(function(){ Physico.rotate[1] -= %f; Physico.rotate[0] += %f; })()", (accel[0]), (accel[1])];
+    [webView stringByEvaluatingJavaScriptFromString:command];
+}
+- (void)continueTransition:(NSTimer* )timer
+{
+    double const accelajust = 0.05;
+    accel[0] -= accel[0] * accelajust ;
+    accel[1] -= accel[1] * accelajust ; 
+    if (accel[0] == 0 && accel[1] == 0)   {
+        [timer invalidate];
+        timer = nil;
+    }
+    NSString* command = [[[NSString alloc] init] stringByAppendingFormat:@"(function(){ Physico.rotate[1] -= %f; Physico.rotate[0] += %f; })()", (accel[0]), (accel[1])];
     [webView stringByEvaluatingJavaScriptFromString:command];
 }
 - (void)startTouchEvent
@@ -152,6 +172,9 @@ float dragDistance[2];
 }
 - (void)endTouchEvent
 {
+    @autoreleasepool {
+        NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(continueTransition:) userInfo:nil repeats:YES]; 
+    }
     tapped = NO;
 }
 - (void)viewDidAppear:(BOOL)animated

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CLWebView : UIWebView
+@interface CLWebView : UIWebView <UIWebViewDelegate>
 
-@property id controler;
+@property (retain) id controler;
 -( CLWebView* ) initWithFrame: (CGRect)frame andControler:(id)controler;
 -( void ) setWebGLEnabled:(BOOL)enableWebGL;
 

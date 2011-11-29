@@ -14,12 +14,59 @@
 
 @synthesize detailViewController = _detailViewController;
 @synthesize obj;
+@synthesize webView;
+
+enum Sections{
+    kHeaderSection = 0,
+    kAddObjectSection,
+    kRemoveObjectSection,
+    kToggleForcesSection,
+    kMusicPlayerSection,
+    NUM_SECTIONS
+};
+
+enum HeaderSection{
+    kShowScene = 0,
+    kResetViewport,
+    kScrambleObjects,
+    NUM_HEADER_ROWS
+};
+
+enum AddSection{
+    kAddOneObject = 0,
+    kAddOneHundredObjects,
+    kAddOneThousandObjects,
+    NUM_ADD_ROWS
+};
+
+enum RemoveSection{
+    kRemoveOneObject = 0,
+    kRemoveOneHundredObjects,
+    kRemoveOneThousandObjects,
+    NUM_REMOVE_ROWS
+};
+
+enum ToggleSection{
+    kToggleGravity = 0,
+    kToggleRepulse,
+    kToggleRWind,
+    kToggleLWind,
+    NUM_TOGGLE_ROWS
+};
+
+enum MusicPlayerSection{
+    kPlayMusic = 0,
+    kPauseMusic,
+    kShuffleTracks,
+    NUM_MUSIC_ROWS
+};
 
 - (void)awakeFromNib
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
+        self.detailViewController.webView = [self webView];
     }
     [super awakeFromNib];
 }
@@ -30,33 +77,39 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-NSMutableArray* elements;
+UIStoryboardSegue* segue;
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     obj = [[NSMutableArray alloc] initWithObjects:nil];
-    NSMutableArray* arr[4];
+    NSMutableArray* arr[5];
     int i;
-    for(i = 0; i < 4; i++) arr[i] = [[NSMutableArray alloc] initWithObjects: nil];
+    for(i = 0; i < 5; i++) arr[i] = [[NSMutableArray alloc] initWithObjects: nil];
+        
+    [arr[kHeaderSection] addObject:@"Show me the Scene"];
+    [arr[kHeaderSection] addObject:@"Reset Viewport"];
+    [arr[kHeaderSection] addObject:@"Scramble Objects"];
+    [obj addObject:arr[kHeaderSection]];
+    [arr[kAddObjectSection] addObject:@"Add one Object"];   
+    [arr[kAddObjectSection] addObject:@"Add 100 Objects"];    
+    [arr[kAddObjectSection] addObject:@"Add 1000 Objects"];
+    [obj addObject:arr[kAddObjectSection]];
+    [arr[kRemoveObjectSection] addObject:@"Remove one Object"];   
+    [arr[kRemoveObjectSection] addObject:@"Remove 100 Objects"];    
+    [arr[kRemoveObjectSection] addObject:@"Remove 1000 Objects"];
+    [obj addObject:arr[kRemoveObjectSection]];
+    [arr[kToggleForcesSection] addObject:@"Toggle Gravity"];  
+    [arr[kToggleForcesSection] addObject:@"Toggle Repulse"]; 
+    [arr[kToggleForcesSection] addObject:@"Toggle Right Wind"]; 
+    [arr[kToggleForcesSection] addObject:@"Toggle Left Wind"];   
+    [obj addObject:arr[kToggleForcesSection]];
+    [arr[kMusicPlayerSection] addObject:@"Play Track"];
+    [arr[kMusicPlayerSection] addObject:@"Pause Track"];
+    [arr[kMusicPlayerSection] addObject:@"Shuffle Tracks"]; 
+    [obj addObject:arr[kMusicPlayerSection]];
     
-    [arr[0] addObject:@"Show me the Scene"];
-    [arr[0] addObject:@"Reset Viewport"];
-    [arr[0] addObject:@"Scramble Objects"];
-    [obj addObject:arr[0]];
-    [arr[1] addObject:@"Add one Object"];   
-    [arr[1] addObject:@"Add 100 Objects"];    
-    [arr[1] addObject:@"Add 1000 Objects"];
-    [obj addObject:arr[1]];
-    [arr[2] addObject:@"Remove one Object"];   
-    [arr[2] addObject:@"Remove 100 Objects"];    
-    [arr[2] addObject:@"Remove 1000 Objects"];
-    [obj addObject:arr[2]];
-    [arr[3] addObject:@"Toggle Gravity"];  
-    [arr[3] addObject:@"Toggle Repulse"]; 
-    [arr[3] addObject:@"Toggle Right Wind"]; 
-    [arr[3] addObject:@"Toggle Left Wind"];   
-    [obj addObject:arr[3]];
+//    segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"getDetail" source:self destination:[self detailViewController]];
     
 	// Do any additional setup after loading the view, typically from a nib.
     self.detailViewController = (CLDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
@@ -103,12 +156,17 @@ NSMutableArray* elements;
     }
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView { 
-    NSLog(@"%d", [[self obj] count]);
-    return [[self obj] count];
+    return NUM_SECTIONS;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"%d", [[[self obj] objectAtIndex:section] count]);
-    return [[[self obj] objectAtIndex:section ] count];
+    switch (section)    {
+        case kHeaderSection : return NUM_HEADER_ROWS; break;
+        case kAddObjectSection : return NUM_ADD_ROWS; break;
+        case kRemoveObjectSection : return NUM_REMOVE_ROWS; break;
+        case kToggleForcesSection : return NUM_TOGGLE_ROWS; break;
+        case kMusicPlayerSection : return NUM_MUSIC_ROWS; break;
+        default: return 0;
+    }
 }
 -(UITableViewCell* )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -124,58 +182,72 @@ NSMutableArray* elements;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
-        case 0:             
+        case kHeaderSection:             
             switch (indexPath.row) {
-                case 0: 
+                case kShowScene: 
+                    [self performSegueWithIdentifier:@"viewScene" sender:self];
                     break;
-                case 1: 
+                case kResetViewport: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"(function(){ Physico.scene = [0, 0, -15]; Physico.rotate = [0, 0, 0]; })()"];
                     break;
-                case 2: 
+                case kScrambleObjects: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.ObjectList.scrambleObjects()"];
                     break;
             }
 
             break;
-        case 1: 
+        case kAddObjectSection: 
             switch (indexPath.row) {
-                case 0: 
+                case kAddOneObject: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.ObjectList.addObject()"];
                     break;
-                case 1: 
+                case kAddOneHundredObjects: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.ObjectList.addObjects(100)"];
                     break;
-                case 2: 
+                case kAddOneThousandObjects: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.ObjectList.addObjects(1000)"];
                     break;
             }
             break;
-        case 2: 
+        case kRemoveObjectSection: 
             switch (indexPath.row) {
-                case 0: 
+                case kRemoveOneObject: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.ObjectList.removeObject()"];
                     break;
-                case 1: 
+                case kRemoveOneHundredObjects: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.ObjectList.removeObjects(100)"];
                     break;
-                case 2: 
+                case kRemoveOneThousandObjects: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.ObjectList.removeObjects(1000)"];
                     break;
             }
             break;
-        case 3: 
+        case kToggleForcesSection: 
             switch (indexPath.row) {
-                case 0: 
+                case kToggleGravity: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.Animator.ToggleEnvForce(\"gravity\")"];
                     break;
-                case 1: 
+                case kToggleRepulse: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.Animator.ToggleEnvForce(\"repulse\")"];
                     break;
-                case 2: 
+                case kToggleRWind: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.Animator.ToggleEnvForce(\"wind\")"];
                     break;
-                case 3: 
+                case kToggleLWind: 
                     [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.Animator.ToggleEnvForce(\"inverse-wind\")"];
+                    break;
+            }
+            break;
+        case kMusicPlayerSection:
+            switch (indexPath.row)   {
+                case kToggleGravity: 
+                    [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.musicPlayer.player.play()"];
+                    break;
+                case kToggleRepulse: 
+                    [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.musicPlayer.player.pause()"];
+                    break;
+                case kToggleRWind: 
+                    [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.musicPlayer.shuffle()"];
                     break;
             }
             break;
