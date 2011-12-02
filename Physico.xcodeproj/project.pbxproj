@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D292FC2414858FE700495581 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D292FC2114858FD200495581 /* MediaPlayer.framework */; };
 		D2A9E8281481985500B2DDC1 /* Physico Balls-72.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A9E8271481985500B2DDC1 /* Physico Balls-72.png */; };
 		D2A9E82A148199B000B2DDC1 /* Physico Balls Contrast-72.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A9E829148199B000B2DDC1 /* Physico Balls Contrast-72.png */; };
 		D2A9E82C14819A8900B2DDC1 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A9E82B14819A8900B2DDC1 /* Default-Landscape~ipad.png */; };
 		D2A9E82E14819A8B00B2DDC1 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A9E82D14819A8B00B2DDC1 /* Default-Portrait~ipad.png */; };
 		D2B6E7EA147BF99500AB5AFD /* CLWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B6E7E9147BF99500AB5AFD /* CLWebView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2BC040414856FB0003C2FA7 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2BC040014856FB0003C2FA7 /* libTestFlight.a */; };
+		D2BC040514856FB0003C2FA7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2BC040114856FB0003C2FA7 /* README.txt */; };
+		D2BC040614856FB0003C2FA7 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2BC040214856FB0003C2FA7 /* release_notes.txt */; };
 		D2CEE05E147ACD4C005249F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CEE05D147ACD4C005249F4 /* UIKit.framework */; };
 		D2CEE060147ACD4C005249F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CEE05F147ACD4C005249F4 /* Foundation.framework */; };
 		D2CEE062147ACD4C005249F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CEE061147ACD4C005249F4 /* CoreGraphics.framework */; };
@@ -41,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D292FC2114858FD200495581 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		D2A9E822148197D200B2DDC1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D2A9E825148197D400B2DDC1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D2A9E8271481985500B2DDC1 /* Physico Balls-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Physico Balls-72.png"; sourceTree = "<group>"; };
@@ -49,6 +54,10 @@
 		D2A9E82D14819A8B00B2DDC1 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		D2B6E7E8147BF99500AB5AFD /* CLWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWebView.h; sourceTree = "<group>"; };
 		D2B6E7E9147BF99500AB5AFD /* CLWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWebView.m; sourceTree = "<group>"; };
+		D2BC040014856FB0003C2FA7 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		D2BC040114856FB0003C2FA7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		D2BC040214856FB0003C2FA7 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
+		D2BC040314856FB0003C2FA7 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		D2CEE059147ACD4C005249F4 /* Physico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Physico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CEE05D147ACD4C005249F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D2CEE05F147ACD4C005249F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -72,6 +81,7 @@
 		D2CEE08D147ACD4D005249F4 /* PhysicoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicoTests.h; sourceTree = "<group>"; };
 		D2CEE08E147ACD4D005249F4 /* PhysicoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhysicoTests.m; sourceTree = "<group>"; };
 		D2D2C0A9147E8ACF00375084 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = Physico/assets; sourceTree = "<group>"; };
+		D2E9ED66148586370048662E /* Physico copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Physico copy-Info.plist"; path = "/Users/sabinmarcu/Work/Projects/Physico-iOS/Physico copy-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +91,9 @@
 			files = (
 				D2CEE05E147ACD4C005249F4 /* UIKit.framework in Frameworks */,
 				D2CEE060147ACD4C005249F4 /* Foundation.framework in Frameworks */,
+				D292FC2414858FE700495581 /* MediaPlayer.framework in Frameworks */,
 				D2CEE062147ACD4C005249F4 /* CoreGraphics.framework in Frameworks */,
+				D2BC040414856FB0003C2FA7 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +110,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D2CEE04E147ACD4C005249F4 = {
+		D2BC03FF14856FB0003C2FA7 /* TestFlightSDK0.8.1 2 */ = {
+			isa = PBXGroup;
+			children = (
+				D2BC040314856FB0003C2FA7 /* TestFlight.h */,
+				D2BC040014856FB0003C2FA7 /* libTestFlight.a */,
+				D2BC040114856FB0003C2FA7 /* README.txt */,
+				D2BC040214856FB0003C2FA7 /* release_notes.txt */,
+			);
+			path = "TestFlightSDK0.8.1 2";
+			sourceTree = "<group>";
+		};
+		D2BC040814856FB6003C2FA7 /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
 				D2A9E82D14819A8B00B2DDC1 /* Default-Portrait~ipad.png */,
@@ -107,11 +130,21 @@
 				D2A9E8271481985500B2DDC1 /* Physico Balls-72.png */,
 				D2A9E825148197D400B2DDC1 /* Default@2x.png */,
 				D2A9E822148197D200B2DDC1 /* Default.png */,
+			);
+			name = Pictures;
+			sourceTree = "<group>";
+		};
+		D2CEE04E147ACD4C005249F4 = {
+			isa = PBXGroup;
+			children = (
+				D2BC03FF14856FB0003C2FA7 /* TestFlightSDK0.8.1 2 */,
+				D2BC040814856FB6003C2FA7 /* Pictures */,
 				D2D2C0AB147E8AD800375084 /* Physico Web Engine */,
 				D2CEE063147ACD4C005249F4 /* Physico iOS Bridge App */,
 				D2CEE087147ACD4D005249F4 /* PhysicoTests */,
 				D2CEE05C147ACD4C005249F4 /* Frameworks */,
 				D2CEE05A147ACD4C005249F4 /* Products */,
+				D2E9ED66148586370048662E /* Physico copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +160,7 @@
 		D2CEE05C147ACD4C005249F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D292FC2114858FD200495581 /* MediaPlayer.framework */,
 				D2CEE05D147ACD4C005249F4 /* UIKit.framework */,
 				D2CEE05F147ACD4C005249F4 /* Foundation.framework */,
 				D2CEE061147ACD4C005249F4 /* CoreGraphics.framework */,
@@ -271,6 +305,8 @@
 				D2A9E82A148199B000B2DDC1 /* Physico Balls Contrast-72.png in Resources */,
 				D2A9E82C14819A8900B2DDC1 /* Default-Landscape~ipad.png in Resources */,
 				D2A9E82E14819A8B00B2DDC1 /* Default-Portrait~ipad.png in Resources */,
+				D2BC040514856FB0003C2FA7 /* README.txt in Resources */,
+				D2BC040614856FB0003C2FA7 /* release_notes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +456,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Physico/Physico-Prefix.pch";
 				INFOPLIST_FILE = "Physico/Physico-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK0.8.1 2\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -431,6 +471,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Physico/Physico-Prefix.pch";
 				INFOPLIST_FILE = "Physico/Physico-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK0.8.1 2\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

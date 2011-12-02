@@ -92,23 +92,15 @@ NSTimer* timer;
 {
     NSString* jsonData = [webView stringByEvaluatingJavaScriptFromString:@"(function(){return JSON.stringify(Physico.webglshaders); })()"];
     NSDictionary *shaders = [NSJSONSerialization JSONObjectWithData:[jsonData dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
-    NSString* fileContents;
-    NSString* command;
-    NSString* name;
     for(id key in shaders)   {
-        id location = [key objectAtIndex:0];
-        id type = [key objectAtIndex:1];
-        name = [[location componentsSeparatedByString:@"/"] lastObject];
-        fileContents = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"" inDirectory:@"webgl"] encoding:NSUTF8StringEncoding error:nil];
-        command= @"(function(){var script=document.createElement('script'); script.id='";
-        command = [command stringByAppendingString: name];
-        command = [command stringByAppendingString: @"'; script.innerHTML = \""];
-        command = [command stringByAppendingString: [fileContents stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"]];         
-        command = [command stringByAppendingString: @"\"; script.type = '"];                                          
-        command = [command stringByAppendingString: type];
-        command = [command stringByAppendingString: @"'; document.head.appendChild(script);"];
-        command = [command stringByAppendingString:@" })()"];
-        [webView stringByEvaluatingJavaScriptFromString:command];
+        @autoreleasepool{
+            id location = [key objectAtIndex:0];
+            id type = [key objectAtIndex:1];
+            id name = [[location componentsSeparatedByString:@"/"] lastObject];
+            id fileContents = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"" inDirectory:@"assets/webgl"] encoding:NSUTF8StringEncoding error:nil];
+            id command= [[[NSString alloc] init] stringByAppendingFormat:@"(function(){var script=document.createElement('script'); script.id='%@'; script.innerHTML = \"%@\"; script.type='%@'; document.head.appendChild(script); })()", name, [fileContents stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"], type];
+            [webView stringByEvaluatingJavaScriptFromString:command];
+        }
     }
     [webView stringByEvaluatingJavaScriptFromString:@"Physico.completeLoad()"];
 }
@@ -148,9 +140,32 @@ NSTimer* timer;
         dragDistance[1] = acceleration.y;
         tappedFirst = NO;
     }
+    UIDeviceOrientation or = [[UIDevice currentDevice] orientation];
     accel[0] = (acceleration.x - dragDistance[0]) * accelajust + accel[0] * (1.0 - 0.15 );
     accel[1] = (acceleration.y - dragDistance[1]) * accelajust  + accel[1] * (1.0 - 0.15 );
-    NSString* command = [[[NSString alloc] init] stringByAppendingFormat:@"(function(){ Physico.rotate[1] -= %f; Physico.rotate[0] += %f; })()", (accel[0]), (accel[1])];
+    int x, y;
+    switch ((int) or) {
+        case 1:            x = -accel[0];
+            y = accel[1];
+            break;
+        case 2:
+            x = accel[0];
+            y = accel[1];
+            break;
+        case 3:            
+            x = -accel[0];
+            y = -accel[1];
+            NSLog(@"%f, %f", acceleration.x, acceleration.y);
+            break;
+        case 4:
+            x = -accel[1];
+            y = accel[0];            
+            break;    
+        default: 
+            x = y = 0;
+            break;
+    }
+    NSString* command = [[[NSString alloc] init] stringByAppendingFormat:@"(function(){ Physico.rotate[1] -= %f; Physico.rotate[0] += %f; })()", (x), (y)];
     [webView stringByEvaluatingJavaScriptFromString:command];
 }
 - (void)continueTransition:(NSTimer* )timer

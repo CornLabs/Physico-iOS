@@ -7,8 +7,8 @@
 //
 
 #import "CLMasterViewController.h"
-
 #import "CLDetailViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @implementation CLMasterViewController
 
@@ -22,6 +22,8 @@ enum Sections{
     kRemoveObjectSection,
     kToggleForcesSection,
     kMusicPlayerSection,
+    kModesSection,
+    kFeedBackSection,
     NUM_SECTIONS
 };
 
@@ -61,6 +63,18 @@ enum MusicPlayerSection{
     NUM_MUSIC_ROWS
 };
 
+enum ModesSection{
+    kTrolLMode = 0, 
+    kPatriotMode,
+    kToggleTextures,
+    NUM_MODES_ROWS
+};
+
+enum FeedBackSection{
+    kFeedBack,
+    NUM_FEEDBACK_ROWS
+};
+
 - (void)awakeFromNib
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -78,14 +92,15 @@ enum MusicPlayerSection{
 }
 
 UIStoryboardSegue* segue;
+MPMusicPlayerController *mPlay;
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     obj = [[NSMutableArray alloc] initWithObjects:nil];
-    NSMutableArray* arr[5];
+    NSMutableArray* arr[7];
     int i;
-    for(i = 0; i < 5; i++) arr[i] = [[NSMutableArray alloc] initWithObjects: nil];
+    for(i = 0; i < 7; i++) arr[i] = [[NSMutableArray alloc] initWithObjects: nil];
         
     [arr[kHeaderSection] addObject:@"Show me the Scene"];
     [arr[kHeaderSection] addObject:@"Reset Viewport"];
@@ -106,8 +121,19 @@ UIStoryboardSegue* segue;
     [obj addObject:arr[kToggleForcesSection]];
     [arr[kMusicPlayerSection] addObject:@"Play Track"];
     [arr[kMusicPlayerSection] addObject:@"Pause Track"];
-    [arr[kMusicPlayerSection] addObject:@"Shuffle Tracks"]; 
+    [arr[kMusicPlayerSection] addObject:@"Next Track"]; 
     [obj addObject:arr[kMusicPlayerSection]];
+    [arr[kModesSection] addObject:@"Troll Mode"];
+    [arr[kModesSection] addObject:@"Patriot Mode"];
+    [arr[kModesSection] addObject:@"Toggle Textures"];
+    [obj addObject: arr[kModesSection]];
+    [arr[kFeedBackSection] addObject:@"Send Feedback"];
+    [obj addObject:arr[kFeedBackSection]];
+    
+    mPlay = [MPMusicPlayerController applicationMusicPlayer];
+    [mPlay setQueueWithQuery: [MPMediaQuery songsQuery]];
+    [mPlay setShuffleMode:MPMusicShuffleModeSongs];
+    [mPlay setRepeatMode:MPMusicRepeatModeAll];
     
 //    segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"getDetail" source:self destination:[self detailViewController]];
     
@@ -165,6 +191,8 @@ UIStoryboardSegue* segue;
         case kRemoveObjectSection : return NUM_REMOVE_ROWS; break;
         case kToggleForcesSection : return NUM_TOGGLE_ROWS; break;
         case kMusicPlayerSection : return NUM_MUSIC_ROWS; break;
+        case kModesSection : return NUM_MODES_ROWS; break;
+        case kFeedBackSection : return NUM_FEEDBACK_ROWS; break;
         default: return 0;
     }
 }
@@ -178,6 +206,32 @@ UIStoryboardSegue* segue;
     cell.textLabel.text = [[obj objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
     return cell;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch ( section )  {
+        case kHeaderSection: return @"Basic Stuff";
+        case kAddObjectSection: return @"Add objects";
+        case kRemoveObjectSection: return @"Remove objects";
+        case kToggleForcesSection: return @"Forces Zone";
+        case kMusicPlayerSection: return @"Music Player";
+        case kModesSection: return @"Mods";
+        case kFeedBackSection: return @"Feedback";
+        default: return @"";
+    }
+}
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    switch ( section )  {
+        case kHeaderSection: return @"Basic controls to get you started.";
+        case kAddObjectSection: return @"For now, just some random values.";
+        case kRemoveObjectSection: return @"Again, only random values, sorry.";
+        case kToggleForcesSection: return @"Just some presets, for now. Custom forces coming up in v1.1, prommise (:";
+        case kMusicPlayerSection: return @"Hope you like our new ambiental player";
+        case kModesSection: return @"Some alterations to the main app";
+        case kFeedBackSection: return @"Leave some feedback, don't be an ass...";
+        default: return @"";
+    }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -240,14 +294,37 @@ UIStoryboardSegue* segue;
             break;
         case kMusicPlayerSection:
             switch (indexPath.row)   {
-                case kToggleGravity: 
-                    [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.musicPlayer.player.play()"];
+                case kPlayMusic: 
+                    [mPlay play];
                     break;
-                case kToggleRepulse: 
-                    [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.musicPlayer.player.pause()"];
+                case kPauseMusic: 
+                    [mPlay pause];
                     break;
-                case kToggleRWind: 
-                    [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.musicPlayer.shuffle()"];
+                case kShuffleTracks: 
+                    [mPlay skipToNextItem];
+                    break;
+            }
+            break;
+        case kModesSection: 
+            switch (indexPath.row) {
+                case kTrolLMode: 
+//                    [TestFlight passCheckpoint:@"TROLL_MODE"];
+                    [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.GL.toggleTroll()"];
+                    break;
+                case kPatriotMode: 
+//                    [TestFlight passCheckpoint:@"PATRIOT_MODE"];
+                    [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.GL.togglePatriot()"];
+                    break;
+                case kToggleTextures: 
+//                    [TestFlight passCheckpoint:@"TOGGLE_TEXTURES"];
+                    [[[self detailViewController] webView] stringByEvaluatingJavaScriptFromString:@"Physico.GL.toggleTextures()"];
+                    break;
+            }
+            break;
+        case kFeedBackSection:
+            switch (indexPath.row)   {
+                case kFeedBack: 
+//                    [TestFlight openFeedbackView];
                     break;
             }
             break;

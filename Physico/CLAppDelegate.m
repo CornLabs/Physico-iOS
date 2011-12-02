@@ -7,6 +7,7 @@
 //
 
 #import "CLAppDelegate.h"
+#define NSLog TFLog
 
 @implementation CLAppDelegate
 
@@ -21,6 +22,9 @@
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
     }
+//    [TestFlight takeOff:@"f6db07393a24c0ed22456a2357f409f7_NDQwOTQyMDExLTExLTI5IDExOjA4OjMyLjg5NjMyNA"];
+//    NSLog(@"Application Switched ON");
+//    [TestFlight passCheckpoint:@"APP_INIT"];
     return YES;
 }
 							
